@@ -1,48 +1,59 @@
 <?php
-	require_once("conecta.php");
-	include_once 'header.php'; 
-
-// query que busca todos os dados da tabela USUARIO
-$consulta_usuario = mysql_query("SELECT * FROM usuarios");
-//$resultado = mysql_query($consulta,$conexao) or die ("Erro na seleção da tabela.");
+	require_once 'conecta.php';
+	include_once 'header.php';
+		
+	if($_SESSION['dadoslogin']['usuario_tipo']=='F'){
+		header('Location: dashboard.php');
+	}
 ?>
 
 <html>
 	<head>
-		<title>Dashboard</title>
+		<title>Usuários</title>
 	</head>
 	<body>
-		<h2 id="tables-hover-rows">Hover rows</h2>
-		<table class="table table-hover">
-  			      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-		</table>
+		<h2 id="tables-hover-rows">Usuarios</h2>
+		
+		<?php
+			echo '<table class="table table-hover">';
+				echo '<thead>';
+					echo '<tr>';
+						echo '<th>ID</th>';
+						echo '<th>Tipo</th>';
+						echo '<th>Nome</th>';
+						echo '<th>CPF</th>';
+						echo '<th>Tel Res</th>';
+						echo '<th>Tel Cel</th>';
+						echo '<th>Endereço</th>';
+						echo '<th>Dt Nasc</th>';
+						echo '<th>Email</th>';
+						echo '<th>Login</th>';
+						echo '<th>Senha</th>';
+					echo '</tr>';
+				echo '</thead>';
+				echo '<tbody>';
+				
+					// query que busca todos os dados da tabela USUARIO
+					$sql = mysql_query("SELECT * FROM usuario");
+					//var_dump($usuarios);
+					while ($row = mysql_fetch_assoc($sql)) {
+						echo '<tr>';
+							echo '<td>' . $row['usuario_id'] . '</td>';
+							echo '<td>' . $row['usuario_tipo'] . '</td>';
+							echo '<td>' . $row['usuario_nome'] . '</td>';
+							echo '<td>' . $row['usuario_cpf'] . '</td>';
+							echo '<td>' . $row['usuario_telefone_res'] . '</td>';
+							echo '<td>' . $row['usuario_telefone_cel'] . '</td>';
+							echo '<td>' . $row['usuario_endereco'] . '</td>';
+							echo '<td>' . $row['usuario_data_nasc'] . '</td>';
+							echo '<td>' . $row['usuario_email'] . '</td>';
+							echo '<td>' . $row['usuario_login'] . '</td>';
+							echo '<td>' . $row['usuario_senha'] . '</td>';
+						echo '</tr>';
+				}
+					echo '</tbody>';
+			echo '</table>';
+		?>
 	</body>
 </html>
 <?php include_once 'footer.php'; ?>

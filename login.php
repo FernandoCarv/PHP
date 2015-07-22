@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- ESTE É MEU SEGUNDO COMMIT -->
-<!-- ESTE É MEU Terceiro COMMIT -->
 <html lang="en">
   <head>
     <meta charset="utf-8">

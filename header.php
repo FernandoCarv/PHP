@@ -46,13 +46,13 @@
 		        <li><a href="produtos.php">Produtos</a></li>
 		<?php } ?>    
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+     <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Pesquisar">
         </div>
         <button type="submit" class="btn btn-default">Pesquisar</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
+      </form>	-->
+      <ul class="nav navbar-nav navbar-right"> 
 		<li><a href="logout.php" type="button" class="btn btn-link">Sair</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
