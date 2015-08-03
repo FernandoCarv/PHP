@@ -6,12 +6,6 @@
 		header('Location: dashboard.php');
 	}
 ?>
-
-<html>
-	<head>
-		<title>Usuários</title>
-	</head>
-	<body>
 		<h2 id="tables-hover-rows">Usuarios</h2>
 		
 		<?php
@@ -26,6 +20,7 @@
 						echo '<th>Tel Cel</th>';
 						echo '<th>Endereço</th>';
 						echo '<th>Dt Nasc</th>';
+						echo '<th>Sexo</th>';
 						echo '<th>Email</th>';
 						echo '<th>Login</th>';
 						echo '<th>Senha</th>';
@@ -35,7 +30,6 @@
 				
 					// query que busca todos os dados da tabela USUARIO
 					$sql = mysql_query("SELECT * FROM usuario");
-					//var_dump($usuarios);
 					while ($row = mysql_fetch_assoc($sql)) {
 						echo '<tr>';
 							echo '<td>' . $row['usuario_id'] . '</td>';
@@ -46,14 +40,13 @@
 							echo '<td>' . $row['usuario_telefone_cel'] . '</td>';
 							echo '<td>' . $row['usuario_endereco'] . '</td>';
 							echo '<td>' . $row['usuario_data_nasc'] . '</td>';
+							echo '<td>' . $row['usuario_sexo'] . '</td>';
 							echo '<td>' . $row['usuario_email'] . '</td>';
 							echo '<td>' . $row['usuario_login'] . '</td>';
-							echo '<td>' . $row['usuario_senha'] . '</td>';
+							echo '<td>' . $row['usuario_senha']. '</td>';
 						echo '</tr>';
 				}
 					echo '</tbody>';
 			echo '</table>';
 		?>
-	</body>
-</html>
 <?php include_once 'footer.php'; ?>

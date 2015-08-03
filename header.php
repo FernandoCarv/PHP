@@ -11,7 +11,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery.maskedinput.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,7 +21,7 @@
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -36,25 +37,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <?php if($_SESSION['dadoslogin']['usuario_tipo']=='G'){ ?>
-		        <li><a href="clientes.php">Clientes</a></li>
-		        <li><a href="usuarios.php">Usuarios</a></li>
-		        <li><a href="vendas.php">Vendas</a></li>
+      	<li><a href="clientes.php">Clientes</a></li>
+      	<li><a href="produtos.php">Produtos</a></li>
+        <?php if($_SESSION['dadoslogin']['usuario_tipo']=='G'){ ?>    
+		    <li><a href="usuarios.php">Usuarios</a></li>
+		    <li><a href="vendas.php">Vendas</a></li>
         <?php } ?> 
-        <?php if($_SESSION['dadoslogin']['usuario_tipo']=='F'){ ?>
-				<li><a href="clientes.php">Clientes</a></li>
-		        <li><a href="produtos.php">Produtos</a></li>
-		<?php } ?>    
       </ul>
-     <!-- <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Pesquisar">
-        </div>
-        <button type="submit" class="btn btn-default">Pesquisar</button>
-      </form>	-->
       <ul class="nav navbar-nav navbar-right"> 
 		<li><a href="logout.php" type="button" class="btn btn-link">Sair</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
 </nav>
+	    Usuário Logado:
+	    <?php $usuário_logado = $_SESSION['dadoslogin']['usuario_nome'];
+	    	echo $usuário_logado;
+	    ?>
