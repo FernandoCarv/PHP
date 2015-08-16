@@ -6,8 +6,15 @@
 		header('Location: dashboard.php');
 	}
 ?>
-		<h2 id="tables-hover-rows">Usuarios</h2>
-		
+		<center><h2>Resumo de usuários cadastrados</h2></center>
+		<div class="form-group">
+			<div>
+			<br>
+		    	<a href="cadastra_usuario.php" type="button" class="btn btn-default btn-lg">
+		    		<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Cadastrar novo usuário
+				</a>
+			</div>
+		</div>
 		<?php
 			echo '<table class="table table-hover">';
 				echo '<thead>';
@@ -44,9 +51,28 @@
 							echo '<td>' . $row['usuario_email'] . '</td>';
 							echo '<td>' . $row['usuario_login'] . '</td>';
 							echo '<td>' . $row['usuario_senha']. '</td>';
+							echo '<td><a href="usuario_detalhes.php?id='.$row['usuario_id'].'"><span class="view glyphicon glyphicon-search" clid="'.$row['usuario_id'].'"></span></a>';
+							echo '<td><a href="usuario_update.php?id='.$row['usuario_id'].'"><span class="edit glyphicon glyphicon-pencil" clid="'.$row['usuario_id'].'"></span></a>';
+							echo '<td><a href=""><span class="del glyphicon glyphicon-trash" cliente_id="'.$row['usuario_id'].'"></span></a></td>';							
 						echo '</tr>';
 				}
 					echo '</tbody>';
 			echo '</table>';
 		?>
+		<script type="text/javascript">
+	 		$(function(){
+	 			$('.del').on('click', function(e){
+	 				e.preventDefault();
+	 				e.stopPropagation();
+					if(confirm("Deseja realmente apagar o usuario?")){
+		 				var idusuario = $(this).attr('usuario_id');
+		 				
+		 				$.post('delete.php', {id:idusuario, tipo:'deleteusuario'}, function(data){
+							alert(data.msg);
+						}, "json");
+		 				$(this).parents("tr").first().remove();
+					}
+	  			});
+	 		}); 		
+		</script>		
 <?php include_once 'footer.php'; ?>

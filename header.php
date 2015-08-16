@@ -11,8 +11,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="js/jquery.maskedinput.js"></script>
+	<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="js/jquery.maskedinput.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,7 +45,7 @@
         <?php } ?> 
       </ul>
       <ul class="nav navbar-nav navbar-right"> 
-		<li><a href="logout.php" type="button" class="btn btn-link">Sair</a></li>
+		<li><a href="logout.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden=""></span> Sair</a></li>
       </ul>
       </div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->

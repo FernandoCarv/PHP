@@ -2,28 +2,23 @@
 	include_once 'conecta.php';
 	include_once 'header.php';
 ?>
-		<h2>Clientes</h2>
-		<form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-	    	<input type="text" class="form-control" placeholder="Pesquisar">
-	        </div>
-	        <button type="submit" class="btn btn-default">Pesquisar</button>
-		</form>
+		<center><h2>Resumo de clientes cadastrados</h2></center>
+		<div class="form-group">
+			<div>
+			<br>
+		    	<a href="cadastra_cliente.php" type="button" class="btn btn-default btn-lg">
+		    		<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Cadastrar novo cliente
+				</a>
+			</div>
+		</div>
+		
 		<?php	echo '<table class="table table-hover">';
 					echo '<thead>';
 						echo '<tr>';
 							echo '<th>ID</th>';
-							echo '<th>Tipo</th>';
-							echo '<th>Nome</th>';
-							echo '<th>CPF</th>';
-							echo '<th>CNPJ</th>';
-							echo '<th>Dt Nasc</th>';
-							echo '<th>Sexo</th>';
-							echo '<th>Endereço</th>';
-							echo '<th>Tel Res</th>';
-							echo '<th>Tel Cel</th>';
-							echo '<th>Email</th>';
-							echo '<th>Senha</th>';
+							echo '<th>Nome Completo</th>';
+							echo '<th>Tipo</th>';							
+							echo '<th>Razão Social</th>';
 							echo '<th></th>';
 						echo '</tr>';
 					echo '</thead>';
@@ -31,35 +26,23 @@
 					// query que busca todos os dados da tabela CLIENTE
 					$sql = mysql_query("SELECT
 							cliente_id,
-							cliente_tipo,
 							cliente_nome,
-							cliente_cpf,
-							cliente_cnpj,
-							DATE_FORMAT(cliente_dt_nasc , '%d/%m/%Y') as cliente_dt_nasc,
-							cliente_sexo,
-							cliente_endereco,
-							cliente_telefone_res,
-							cliente_telefone_celular,
-							cliente_email,
-							cliente_senha
-							FROM cliente");
+							case
+								when cliente_tipo = 'F' then 'Pessoa Física'
+								when cliente_tipo = 'J' then 'Pessoa Jurídica'
+							end as cliente_tipo,
+							cliente_razao_social
+    						FROM cliente");
+					
 					while ($row = mysql_fetch_assoc($sql)) {
 						echo '<tr>';
 							echo '<td>' . $row['cliente_id'] . '</td>';
-							echo '<td>' . $row['cliente_tipo'] . '</td>';
 							echo '<td>' . $row['cliente_nome'] . '</td>';
-							echo '<td>' . $row['cliente_cnpj'] . '</td>';
-							echo '<td>' . $row['cliente_cpf'] . '</td>';
-							echo '<td>' . $row['cliente_dt_nasc'] . '</td>';
-							echo '<td>' . $row['cliente_sexo'] . '</td>';
-							echo '<td>' . $row['cliente_endereco'] . '</td>';
-							echo '<td>' . $row['cliente_telefone_res'] . '</td>';
-							echo '<td>' . $row['cliente_telefone_celular'] . '</td>';
-							echo '<td>' . $row['cliente_email'] . '</td>';
-							echo '<td>' . $row['cliente_senha'] . '</td>';
-							echo '<td><span class="glyphicon glyphicon-search" ></span>';
-							echo '<td><span class="glyphicon glyphicon-pencil" ></span>';
-							echo '<td><span class="del glyphicon glyphicon-trash" clid="'.$row['cliente_id'].'"></span></td>';							
+							echo '<td>' . $row['cliente_tipo'] . '</td>';
+							echo '<td>' . $row['cliente_razao_social'] . '</td>';
+							echo '<td><a href="cliente_detalhes.php?id='.$row['cliente_id'].'"><span class="view glyphicon glyphicon-search" clid="'.$row['cliente_id'].'"></span></a>';
+							echo '<td><a href="cliente_update.php?id='.$row['cliente_id'].'"><span class="edit glyphicon glyphicon-pencil" clid="'.$row['cliente_id'].'"></span></a>';
+							echo '<td><a href=""><span class="del glyphicon glyphicon-trash" cliente_id="'.$row['cliente_id'].'"></span></a></td>';							
 						echo '</tr>';
 					}
 					echo '</tbody>';
@@ -67,16 +50,18 @@
 		?>
 		<script type="text/javascript">
 	 		$(function(){
-	 			$("body").on('click', '.del', function(){
+	 			$('.del').on('click', function(e){
+	 				e.preventDefault();
+	 				e.stopPropagation();
 					if(confirm("Deseja realmente apagar o cliente?")){
-		 				var idcliente = $(this).attr('clid');
+		 				var idcliente = $(this).attr('cliente_id');
 		 				
 		 				$.post('delete.php', {id:idcliente, tipo:'deletecliente'}, function(data){
 							alert(data.msg);
-							$(this).parent().parent().remove();
-		 	 			}, "json");
+						}, "json");
+		 				$(this).parents("tr").first().remove();
 					}
 	  			});
-	 		});
+	 		}); 		
 		</script>
 <?php include_once 'footer.php'; ?>
