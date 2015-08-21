@@ -19,7 +19,6 @@
 							echo '<th>Nome Completo</th>';
 							echo '<th>Tipo</th>';							
 							echo '<th>Razão Social</th>';
-							echo '<th></th>';
 						echo '</tr>';
 					echo '</thead>';
 					echo '<tbody>';

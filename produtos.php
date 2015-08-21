@@ -8,7 +8,7 @@
 			<br>
 		    	<a href="cadastra_produto.php" type="button" class="btn btn-default btn-lg">
 		    		<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Cadastrar novo produto
-				</a>
+		    	</a>
 			</div>
 		</div>
 		<?php	echo '<table class="table table-hover">';

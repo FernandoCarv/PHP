@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+  	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -38,6 +38,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       	<li><a href="clientes.php">Clientes</a></li>
+      	<li><a href="categorias.php">Categorias</a></li>
       	<li><a href="produtos.php">Produtos</a></li>
         <?php if($_SESSION['dadoslogin']['usuario_tipo']=='G'){ ?>    
 		    <li><a href="usuarios.php">Usuarios</a></li>
